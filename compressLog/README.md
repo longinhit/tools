@@ -4,7 +4,8 @@
 
 ## 使用方式
 
-./compressLog.sh /data/worker/haproxy-log/haproxy/_log 4
+./compressLog.sh /data/ 4
 
 第一个参数： 日志保存目录
+
 第二个参数： 距离今天多少天以前的日志进行压缩
