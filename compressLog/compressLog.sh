@@ -17,13 +17,12 @@ function compress() {
          if [[ $file == *gz ]];then
             echo "already gzip $file"
          else
-            count_process=$[$(ps -ef |grep "gzip $1" | wc -l)-1]
-            if [ $count_process -lt 25 ];then
-               echo "gzip $file"
-               gzip $file&
-            else 
-               sleep 1m
-            fi
+            while [ $[$(ps -ef |grep "gzip $1" | wc -l)-1] -ge 24 ]
+            do
+               sleep 30s
+            done
+            echo "gzip $file"
+            gzip $file&
         fi
       elif [ -d $file ]; then
           echo $file" Is a directory"
